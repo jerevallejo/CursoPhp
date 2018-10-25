@@ -10,13 +10,13 @@
 <?php
 	$pasword="admin";
 	$user="admin"; 
-	$img='<img src="img/gandalf.jpg" >';
+	$img='<img src="img/gandalf.jpg">';
 	$contraseña=$_POST["contraseña"];
 	$usuario=$_POST["usuario"];
 
 	if ($user==$usuario & $pasword==$contraseña)
  		{
-			$img= '<img src="img/yisus.jpg"';	
+			$img= '<img src="img/yisus.jpg">';
 		}
 	echo $img;
 
