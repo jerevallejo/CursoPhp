@@ -7,7 +7,7 @@
 ?>
 
 <main class="container">
-    <h1>Alta de una nueva marca</h1>
+    <h1>Edicion de una marca</h1>
     <?php 
     	if($agregarMarca)
     	{?>

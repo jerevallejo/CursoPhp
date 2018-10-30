@@ -24,5 +24,20 @@
 		$resultado = $link->query($sql);
 		return $resultados;
 	}
-
- ?>
+	function eliminarMarca()
+	{
+		$link = conectar();
+		$mkNombre = $_POST['mkNombre'];
+		$sql = "DELETE FROM marcas WHERE idMarca=".$id;
+		$resultado = $link->query($sql);
+		return $resultados;
+	}
+	 function modificarMarca($nombre)
+		{
+			$link = conectar();
+			$mkNombre = $_POST['mkNombre'];
+			$sql = "UPDATE marcas SET mkNombre= '$nombre' WHERE idMarca=".$id;
+			$resultado = $link->query($sql);
+			return $resultados;
+		}
+?>

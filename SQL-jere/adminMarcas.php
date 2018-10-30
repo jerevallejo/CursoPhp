@@ -32,7 +32,7 @@
 				<a href="fromEditarMarca.php?idMarca=<?php echo $marca['idMarca'];?>" class="btn btn-light">Modificar</a>
 			</td>	
 			<td>
-				<a href="#" class="btn btn-light">Eliminar</a>
+				<a href="fromEliminarMarca.php?idMarca=<?php echo $marca['idMarca'];?>" class="btn btn-light">Eliminar</a>
 			</td>
 		</tr>
 	<?php 
