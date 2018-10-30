@@ -11,9 +11,10 @@
     <?php 
     	if($agregarMarca)
     	{?>
-    		<div class="alert alerta-success"role="alert">
+    		<div class="alert alert-success" role="alert">
     			Marca agregada con exito 
     			<br>
+                <a href= "adminMarcas.php "class="btn btn-light mt-2"> Volver al menu marcas </a>
             </div>
     			
     <?php }

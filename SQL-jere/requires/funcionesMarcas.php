@@ -20,24 +20,33 @@
 	{
 		$link = conectar();
 		$mkNombre = $_POST['mkNombre'];
-		$sql = "INSERT INTO marcas(mkNombre) VALUES('".$nombre."') ";
-		$resultado = $link->query($sql);
-		return $resultados;
+		$sql = "INSERT INTO marcas(mkNombre) VALUES('".$mkNombre."') ";
+		$resultado = $link->query($sql);//ejecuta el agregar
+		return $resultado;
 	}
-	function eliminarMarca()
+	/*function eliminarMarca()
 	{
 		$link = conectar();
 		$mkNombre = $_POST['mkNombre'];
-		$sql = "DELETE FROM marcas WHERE idMarca=".$id;
-		$resultado = $link->query($sql);
-		return $resultados;
-	}
-	 function modificarMarca($nombre)
+		$idMarca=$_POST['idMarca'];
+		$sql = "DELETE FROM marcas WHERE idMarca=".$idMarca;
+		$resultado = $link->query($sql);//ejecuta el delete
+		return $resultado;
+	}*/
+	 function editarMarca()
 		{
 			$link = conectar();
 			$mkNombre = $_POST['mkNombre'];
-			$sql = "UPDATE marcas SET mkNombre= '$nombre' WHERE idMarca=".$id;
-			$resultado = $link->query($sql);
-			return $resultados;
+			$idMarca=$_POST['idMarca'];
+			$sql = "UPDATE marcas SET mkNombre='".$mkNombre."'  WHERE idMarca=".$idMarca;
+			$resultado = $link->query($sql);//ejecuta la modificacion
+			return $chequeo = $resultado->rowCount();
 		}
+		function eliminarMarca($idMarca)
+	{
+		$link = conectar();
+		$sql = "DELETE FROM marcas WHERE idMarca=".$idMarca;
+		$resultado = $link->query($sql);//ejecuta el delete
+		return $chequeo = $resultado->rowCount();
+	}
 ?>

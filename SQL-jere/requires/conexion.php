@@ -1,16 +1,22 @@
-<?php 
-		function conectar()
-		{
-			$dsn = 'mysql:dbname=catalogo;host=127.0.0.1';
-			$usuario = 'root';
-			$contraseña = '';
+<?php
+    define('SERVER', 'localhost');
+    define('BASE', 'catalogo');
+    define('USUARIO', 'root');
+    define('CLAVE', '');
 
-			try {
-			    $link = new PDO($dsn, $usuario, $contraseña);
-			    return $link;
-			} catch (PDOException $e) {
-			    echo 'Falló la conexión: ' . $e->getMessage();
-			}
-		}
+    function conectar(){
+        $charset = 'utf8mb4';
 
-?>
+        $dsn = 'mysql:host='.SERVER.';dbname='.BASE.';charset='.$charset;
+        $options = [
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES   => false,
+        ];
+        try {
+            $link = new PDO($dsn, USUARIO, CLAVE, $options);
+            return $link;
+        } catch ( PDOException $e) {
+            throw new  PDOException( $e->getMessage(), (int)$e->getCode());
+        }
+    }
