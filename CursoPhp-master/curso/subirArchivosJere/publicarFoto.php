@@ -15,21 +15,23 @@
     echo $_FILES['foto']['type'];
     echo $_FILES['foto']['error'];
 	echo $imgDefecto;
-
-		//echo $imgDefecto='<img src="fotos/<?php echo $_FILES['foto']['name']
+	if($_FILES['foto']['error']==0)
+	{
+		echo $imgDefecto='<img src="fotos/">';
+	}
 ?>
 <hr>
+
 <?php
-    $ruta = 'fotos/';
-    $imagenTMP = $_FILES['foto']['tmp_name'];
-    $imagen = $_FILES['foto']['name'];
-    move_uploaded_file($imagenTMP, $ruta.$imagen)
-
-	/*if ($_FILES['foto']['error'] == 4)
+function enviarArchivo()
 	{
-		echo $imgDefecto;
-	}*/
+	    $ruta = 'fotos/';
+	    $imagenTMP = $_FILES['foto']['tmp_name'];
+	    $imagen = $_FILES['foto']['name'];
+	    move_uploaded_file($imagenTMP, $ruta.$imagen)
+	}
 
- ?>
+?>
+
  </body>
 </html>
