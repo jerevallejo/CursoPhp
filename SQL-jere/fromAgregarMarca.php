@@ -10,8 +10,6 @@
     	<input type="text" name="mkNombre" class="form-control">
     	<br>
     	<input type="submit" value="Agregar marca" class="btn btn-success">
-
-
     </form>
 
 </main>

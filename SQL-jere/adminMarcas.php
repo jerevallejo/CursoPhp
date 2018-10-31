@@ -2,7 +2,6 @@
 	require 'requires/conexion.php';
 	require 'requires/funcionesMarcas.php';
 	$listadoMarcas=listarMarcas();
-
  ?>
 <?php  include 'includes/header.html';  ?>
 <?php  include 'includes/nav.php';  ?>
