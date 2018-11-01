@@ -3,18 +3,15 @@ class Empleado extends Persona
 {
 	private $sueldo;
 
-	public function __construct($sueldo)
+	public function __construct($nombre, $apellido, $sueldo)
 	{	
-
-		$this->sueldo = $sueldo;
+    $this-> sueldo = $sueldo;
+    parent::__construct($nombre, $apellido, $sueldo );
 	}
   
   	public function verDatos()
   	{
-  		$salida = Persona::verDatos();
-  		$salida .= '<br>';
-  		$salida .= 'su sueldo es: '.$this->sueldo;
-  		return $salida;
+  		return Persona::verDatos();
   	}
 
     public function getSueldo()
@@ -25,11 +22,26 @@ class Empleado extends Persona
     public function setSueldo($sueldo)
     {
         $this->sueldo = $sueldo;
-
-        return $this;
+    }
+    public function pagaGanancias($sueldo)
+    {
+      if($sueldo>60000)
+        {
+          return 'Sueldo: '.$sueldo.' paga ganancias';
+        }
+      return 'Sueldo: '.$sueldo;
     }
 }
+/*
+class Dog extends Animal{
+  public function __construct($name){
+    parent::__construct("Dog", $name, "woof!");
+  }
 
-
-
+public function __construct($aType, $aName, $aSound)
+  {
+    $this->type = $aType;
+    $this->name = $aName;
+    $this->sound = $aSound;
+  }*/
 ?>
