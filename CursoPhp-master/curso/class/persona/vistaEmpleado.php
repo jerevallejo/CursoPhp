@@ -1,7 +1,7 @@
 <?php 
 	require 'persona.php';
 	require 'empleado.php';
-	$objEmpleado = new Empleado('juan', 'carlo', 45000);
+	$objEmpleado = new Empleado('juan', 'carlo', 59999);
 	$objEmpleado2 = new Empleado('carlos','juano',60002);
 	//$objPersona->setNombre('juan');
 	//$objPersona->setApellido('Carlin');
