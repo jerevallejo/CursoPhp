@@ -22,10 +22,10 @@
 		return $listadoProductos;
 	}
 
-    public function agregarProducto()
+ /*   public function agregarProducto()
     {
 
-    }
+    }*/
     private function cargarDatosDesdeForm()
     {
         if(isset($_POST['idProducto']))
