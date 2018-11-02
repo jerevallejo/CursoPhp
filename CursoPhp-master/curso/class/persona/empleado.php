@@ -6,7 +6,7 @@ class Empleado extends Persona
 	public function __construct($nombre, $apellido, $sueldo)
 	{	
     $this-> sueldo = $sueldo;
-    parent::__construct($nombre, $apellido, $sueldo );
+    parent::__construct($nombre, $apellido);
 	}
   
   	public function verDatos()
