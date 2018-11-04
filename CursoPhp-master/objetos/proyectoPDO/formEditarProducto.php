@@ -10,9 +10,9 @@
     $listadoCategorias = $objCategoria-> listarCategorias();
 ?>
 <main class="container">
-    <h1>Formulario de alta de un nuevo Producto</h1>
+    <h1>Formulario de edicion de un Producto</h1>
 
-    <form action="agregarProducto.php" method="post" enctype="multipart/form-data">
+    <form action="editarProducto.php" method="post" enctype="multipart/form-data">
         Nombre: <br>
         <input type="text" name="prdNombre" class="form-control" required>
         <br>

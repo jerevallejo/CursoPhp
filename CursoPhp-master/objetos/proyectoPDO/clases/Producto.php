@@ -24,8 +24,91 @@
 
  /*   public function agregarProducto()
     {
-
+    <td><?php echo $producto['prdNombre'];?></td>
+            <td><?php echo $producto['prdPrecio'];?></td>
+            <td><?php echo $producto['mkNombre'];?></td>
+            <td><?php echo $producto['catNombre'];?></td>
+            <td><?php echo $producto['prdPresentacion'];?></td>
+            <td><?php echo $producto['prdStock'];?></td>
     }*/
+        function eliminarProducto()
+    {
+
+        $link = Conexion::conectar();
+        $sql = "DELETE FROM marcas WHERE idMarca=".$idMarca;
+        $resultado = $link->query($sql);//ejecuta el delete
+        return $chequeo = $resultado->rowCount();
+    }
+    public function agregarProducto()
+    {
+        $this->cargarDatosDesdeForm();
+        $link = Conexion::conectar();
+        $sql = "INSERT INTO productos 
+                       ( prdNombre, prdPrecio, idMarca, idCategoria, prdPresentacion, prdStock, prdImagen)
+                       VALUES
+                       ( :prdNombre, :prdPrecio, :idMarca, :idCategoria, :prdPresentacion, :prdStock, :prdImagen)";
+        $stmt = $link->prepare($sql);
+        //dataDinding
+        $prdNombre = $this->getPrdNombre();
+        $prdPrecio = $this->getPrdPrecio();
+        $idMarca = $this->getIdMarca();
+        $idCategoria = $this->getIdCategoria();
+        $prdPresentacion = $this->getPrdPresentacion();
+        $prdStock = $this->getPrdStock();
+        $prdImagen = $this->getPrdImagen();
+        //despues del $mkNombre puedo hacer PDO:: y aca tengo muchas validaciones para ver que los datos sean correctos 
+        $stmt->bindParam(':prdNombre', $prdNombre, PDO::PARAM_STR);
+        $stmt->bindParam(':prdPrecio', $prdPrecio, PDO::PARAM_STR);
+        $stmt->bindParam(':idMarca', $idMarca, PDO::PARAM_INT);
+        $stmt->bindParam(':idCategoria', $idCategoria, PDO::PARAM_INT);
+        $stmt->bindParam(':prdPresentacion', $prdPresentacion, PDO::PARAM_STR);
+        $stmt->bindParam(':prdStock', $prdStock, PDO::PARAM_INT);
+        $stmt->bindParam(':prdImagen', $prdImagen, PDO::PARAM_STR);
+        
+        if( $stmt->execute())
+        {
+            $this->setIdMarca($link->lastInsertId());
+            return true;
+        }
+        return false;
+    }
+
+     public function editarProducto()
+    {
+    
+        $this->cargarDatosDesdeForm();
+        $link = Conexion::conectar();
+        $sql = "UPDATE productos 
+                SET prdNombre = :prdNombre, prdPrecio = :prdPrecio, idMarca = :idMarca,
+                    idCategoria = :idCategoria, prdPresentacion = :prdPresentacion,
+                    prdStock = :prdStock, prdImagen = :prdImagen)
+                       WHERE idProducto=".$this-> getIdProducto();
+        $stmt = $link->prepare($sql);
+        //dataDinding
+        $prdNombre = $this->getPrdNombre();
+        $prdPrecio = $this->getPrdPrecio();
+        $idMarca = $this->getIdMarca();
+        $idCategoria = $this->getIdCategoria();
+        $prdPresentacion = $this->getPrdPresentacion();
+        $prdStock = $this->getPrdStock();
+        $prdImagen = $this->getPrdImagen();
+        //despues del $mkNombre puedo hacer PDO:: y aca tengo muchas validaciones para ver que los datos sean correctos 
+        $stmt->bindParam(':prdNombre', $prdNombre, PDO::PARAM_STR);
+        $stmt->bindParam(':prdPrecio', $prdPrecio, PDO::PARAM_STR);
+        $stmt->bindParam(':idMarca', $idMarca, PDO::PARAM_INT);
+        $stmt->bindParam(':idCategoria', $idCategoria, PDO::PARAM_INT);
+        $stmt->bindParam(':prdPresentacion', $prdPresentacion, PDO::PARAM_STR);
+        $stmt->bindParam(':prdStock', $prdStock, PDO::PARAM_INT);
+        $stmt->bindParam(':prdImagen', $prdImagen, PDO::PARAM_STR);
+        
+        if( $stmt->execute())
+        {
+            $this->setIdMarca($link->lastInsertId());
+            return true;
+        }
+        return false;
+    }
+
     private function cargarDatosDesdeForm()
     {
         if(isset($_POST['idProducto']))
@@ -35,6 +118,10 @@
         if(isset($_POST['prdNombre']))
         {
             $this->setPrdNombre($_POST['prdNombre']);
+        }
+         if(isset($_POST['prdPrecio']))
+        {
+            $this->setPrdPrecio($_POST['prdPrecio']);
         }
          if(isset($_POST['idMarca']))
         {
@@ -68,11 +155,6 @@
         return $prdImagen;
     }
 
-    public function agregarProducto()
-    {
-
-
-    }
    /* public function agregarProducto()
     {
         $link = Conexion::conectar();
