@@ -136,7 +136,7 @@
     public function subirImagen()
     {
         $prdImagen = 'noDisponible.jpg';
-        $rutaDestino = 'images/productos';
+        $rutaDestino = 'images/productos/';
         if($_FILES['prdImagen']['error'] == 0)
         {
             $prdImagenTMP = $_FILES['prdImagen']['tmp_name'];

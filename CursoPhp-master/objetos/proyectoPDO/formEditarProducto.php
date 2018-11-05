@@ -30,7 +30,7 @@
          <?php 
         foreach ($listadoMarcas as $marca)
          { ?>
-            <option value="<?php echo $marca[ 'idMarca'] ?>"> <?php echo $marca[ 'mkNombre'] ?> </option>
+            <option value="<?php echo $marca['idMarca'] ?>"> <?php echo $marca['mkNombre'] ?> </option>
         <?php } ?>
         </select>
         <br>
@@ -40,7 +40,7 @@
         <?php 
         foreach ($listadoCategorias as $categoria)
          { ?>
-            <option value="<?php echo $categoria[ 'idCategoria'] ?>"> <?php echo $categoria[ 'catNombre'] ?> </option>
+            <option value="<?php echo $categoria['idCategoria'] ?>"> <?php echo $categoria['catNombre'] ?> </option>
         <?php } ?>
         </select>
         <br>
