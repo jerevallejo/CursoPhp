@@ -22,15 +22,41 @@ class Marca
 		return $detalleMarca;
 	}
 
+
 	public function agregarMarca()
+    {
+	    $this->cargarDatosDesdeForm();
+        $link = Conexion::conectar();
+        $sql = "INSERT INTO marcas 
+                       ( mkNombre )
+                       VALUES
+                       ( :mkNombre )";
+        $stmt = $link->prepare($sql);
+        //dataDinding
+        $mkNombre = $this->getMkNombre();
+        //despues del $mkNombre puedo hacer PDO:: y aca tengo muchas validaciones para ver que los datos sean correctos 
+        $stmt->bindParam(':mkNombre', $mkNombre, PDO::PARAM_STR);
+        if( $stmt->execute())
+        {
+            $this->setIdMarca($link->lastInsertId());
+            return true;
+        }
+    	return false;
+    }
+
+	private function cargarDatosDesdeForm()
 	{
-		$link = Conexion::conectar();
-		$mkNombre = $_POST['mkNombre'];
-		$sql = "INSERT INTO marcas(mkNombre) VALUES('".$mkNombre."') ";
-		$resultado = $link->query($sql);//ejecuta el agregar
-		return $resultado;
+		if( isset($_POST['idMarca']))//pregunta si un dato existe y no es null
+		{
+			$this->setIdMarca($_POST['idMarca']);
+		}
+		if( isset($_POST['mkNombre']))//pregunta si un dato existe y no es null
+		{
+			$this->setMkNombre($_POST['mkNombre']);
+		}
 	}
-	 function editarMarca()
+
+	 public function editarMarca()
 		{
 			$link = Conexion::conectar();
 			$mkNombre = $_POST['mkNombre'];

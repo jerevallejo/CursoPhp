@@ -21,7 +21,7 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">$</div>
             </div>
-            <input type="text" name="prdPrecio" class="form-control" required>
+            <input type="number" name="prdPrecio" class="form-control" required>
         </div>
         <br>
         Marca: <br>
@@ -30,7 +30,7 @@
          <?php 
         foreach ($listadoMarcas as $marca)
          { ?>
-            <option value="<?php echo $marca[ 'mkNombre'] ?>"> <?php echo $marca[ 'mkNombre'] ?> </option>
+            <option value="<?php echo $marca[ 'idMarca'] ?>"> <?php echo $marca[ 'mkNombre'] ?> </option>
         <?php } ?>
         </select>
         <br>
@@ -38,9 +38,9 @@
         <select name="idCategoria" class="form-control" required>
             <option value="">Seleccione una Categoría</option>
         <?php 
-        foreach ($listadoCategorias as $producto)
+        foreach ($listadoCategorias as $categoria)
          { ?>
-            <option value="<?php echo $producto[ 'catNombre'] ?>"> <?php echo $producto[ 'catNombre'] ?> </option>
+            <option value="<?php echo $categoria[ 'idCategoria'] ?>"> <?php echo $categoria[ 'catNombre'] ?> </option>
         <?php } ?>
         </select>
         <br>

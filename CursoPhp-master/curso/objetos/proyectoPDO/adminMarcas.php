@@ -15,7 +15,7 @@
 				<th>Id</th>
 				<th>Marca</th>
 				<th colspan= "2">
-					<a href="fromAgregarMarca.php" class="btn btn-dark">Agregar</a>
+					<a href="formAgregarMarca.php" class="btn btn-dark">Agregar</a>
 				</th>
 				
 			</tr>
@@ -29,10 +29,10 @@
 			<td><?php echo $marca['idMarca'];?></td>
 			<td><?php echo $marca['mkNombre'];?></td>
 			<td>
-				<a href="fromEditarMarca.php?idMarca=<?php echo $marca['idMarca'];?>" class="btn btn-light">Editar  </a>
+				<a href="formEditarMarca.php?idMarca=<?php echo $marca['idMarca'];?>" class="btn btn-light">Editar  </a>
 			</td>	
 			<td>
-				<a href="fromEliminarMarca.php?idMarca=<?php echo $marca['idMarca'];?>" class="btn btn-light">Eliminar</a>
+				<a href="formEliminarMarca.php?idMarca=<?php echo $marca['idMarca'];?>" class="btn btn-light">Eliminar</a>
 			</td>
 		</tr>
 	<?php 

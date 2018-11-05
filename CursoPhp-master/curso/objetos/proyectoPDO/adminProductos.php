@@ -40,10 +40,10 @@
 			<td><?php echo $producto['prdStock'];?></td>
 			<td><img style= "width:80px" src="images/productos/<?php echo $producto['prdImagen'] ?>" ></td>
 			<td>
-				<a href="fromEditarProducto.php?idMarca=<?php echo $producto['idProducto'];?>" class="btn btn-light">Editar  </a>
+				<a href="formEditarProducto.php?idProducto=<?php echo $producto['idProducto'];?>" class="btn btn-light">Editar  </a>
 			</td>	
 			<td>
-				<a href="fromEliminarProducto.php?idMarca=<?php echo $producto['idProducto'];?>" class="btn btn-light">Eliminar</a>
+				<a href="formEliminarProducto.php?idProducto=<?php echo $producto['idProducto'];?>" class="btn btn-light">Eliminar</a>
 			</td>
 		</tr>
 	<?php 
