@@ -21,6 +21,20 @@
 		$listadoProductos = $resultado->fetchAll();
 		return $listadoProductos;
 	}
+    public function verProductoPorId($id)
+    {
+        $link = Conexion::conectar();
+        $sql = "SELECT idProducto, prdNombre, prdPrecio, prdPresentacion,
+                         mkNombre, p.idMarca, catNombre, c.idCategoria, prdStock, prdImagen
+                FROM productos p, marcas m, categorias c
+                WHERE p.idMarca = m.idMarca
+                AND p.idCategoria = c.idCategoria
+                AND  idProducto = :idProducto";
+        $stmt = $link->prepare($sql);
+        $stmt->bindParam(':idProducto', $id , PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     public function eliminarMarca()
     {
@@ -66,16 +80,16 @@
 
      public function editarProducto()
     {
-    
         $this->cargarDatosDesdeForm();
         $link = Conexion::conectar();
         $sql = "UPDATE productos 
                 SET prdNombre = :prdNombre, prdPrecio = :prdPrecio, idMarca = :idMarca,
                     idCategoria = :idCategoria, prdPresentacion = :prdPresentacion,
-                    prdStock = :prdStock, prdImagen = :prdImagen)
-                       WHERE idProducto=".$this-> getIdProducto();
+                    prdStock = :prdStock, prdImagen = :prdImagen
+                       WHERE idProducto= :idProducto";
         $stmt = $link->prepare($sql);
         //dataDinding
+        $idProducto = $this-> getIdProducto();
         $prdNombre = $this->getPrdNombre();
         $prdPrecio = $this->getPrdPrecio();
         $idMarca = $this->getIdMarca();
@@ -84,6 +98,7 @@
         $prdStock = $this->getPrdStock();
         $prdImagen = $this->getPrdImagen();
         //despues del $mkNombre puedo hacer PDO:: y aca tengo muchas validaciones para ver que los datos sean correctos 
+        $stmt->bindParam(':idProducto', $idProducto, PDO::PARAM_INT);
         $stmt->bindParam(':prdNombre', $prdNombre, PDO::PARAM_STR);
         $stmt->bindParam(':prdPrecio', $prdPrecio, PDO::PARAM_STR);
         $stmt->bindParam(':idMarca', $idMarca, PDO::PARAM_INT);
@@ -91,13 +106,8 @@
         $stmt->bindParam(':prdPresentacion', $prdPresentacion, PDO::PARAM_STR);
         $stmt->bindParam(':prdStock', $prdStock, PDO::PARAM_INT);
         $stmt->bindParam(':prdImagen', $prdImagen, PDO::PARAM_STR);
-        
-        if( $stmt->execute())
-        {
-            $this->setIdMarca($link->lastInsertId());
-            return true;
-        }
-        return false;
+        $stmt->execute();
+        return $chequeo = $stmt->rowCount();
     }
 
     private function cargarDatosDesdeForm()
@@ -136,6 +146,9 @@
     public function subirImagen()
     {
         $prdImagen = 'noDisponible.jpg';
+            if( isset($_POST['prdImagenOriginal']) ){
+                $prdImagen = $_POST['prdImagenOriginal'];
+            }
         $rutaDestino = 'images/productos/';
         if($_FILES['prdImagen']['error'] == 0)
         {
@@ -161,14 +174,6 @@
         $resultado = $link->query($sql);//ejecuta el agregar
         return $resultado;
     }*/
-    public function getNombrePorId($idProducto)
-    {
-        $link = Conexion::conectar();
-        $sql = "SELECT prdNombre FROM productos WHERE idProducto=".$idProducto;
-        $resultado = $link->query($sql);//ejecuta el delete
-        $detalleMarca = $resultado->fetch();
-        return $detalleMarca;
-    }
     
     public function getIdProducto()
     {

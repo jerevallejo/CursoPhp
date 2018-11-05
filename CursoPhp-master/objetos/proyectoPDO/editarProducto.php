@@ -9,25 +9,25 @@
 <main class="container">
     <h1>Edicion de un producto</h1>
     <?php 
-    	if($chequeo)
+    	if($chequeo == 1)
     {?>
             <div class="alert alert-success" role="alert">
-                Producto: <b><?php echo $objProducto->getPrdProducto(); ?></b> editado con exito 
+                Producto: <b><?php echo $objProducto->getPrdNombre(); ?></b> editado con exito 
                 <br>
-                <a href= "adminMarcas.php "class="btn btn-light mt-2"> Volver al menu de productos </a>
-                <a href= "formAgregarMarca.php "class="btn btn-light mt-2"> Cargar otro producto </a>
-                <a href= "formEditarMarca.php?idProducto=<?php echo $objMarca->getIdProducto(); ?>" class="btn btn-light mt-2"> Editar producto </a>
+                <a href= "adminProductos.php "class="btn btn-light mt-2"> Volver al menu de productos </a>
+                <a href= "formAgregarProducto.php "class="btn btn-light mt-2"> Cargar otro producto </a>
+                <a href= "formEditarProducto.php?idProducto=<?php echo $objProducto->getIdProducto(); ?>" class="btn btn-light mt-2"> Editar producto </a>
                 <a href= "admin.php "class="btn btn-light mt-2"> Volver al Home </a>
             </div>
                 
-    <?php } else {
+    <?php } elseif($chequeo == 0) {
      ?>
         <div class="alert alert-warning" role="alert">
-            El producto: <b><?php echo $objMarca->getMkNombre(); ?></b> no se puedo editar 
+            El producto: <b><?php echo $objProducto->getPrdNombre(); ?></b> no se puedo editar 
             <br>
             <a href= "adminProducto.php "class="btn btn-light mt-2"> Volver al menu de productos </a>
             <a href= "formAgregarProducto.php "class="btn btn-light mt-2"> Cargar otro productos </a>
-            <a href= "formEditarProducto.php?idProducto=<?php echo $objMarca->getIdProducto(); ?>" class="btn btn-light mt-2"> Editar producto </a>
+            <a href= "formEditarProducto.php?idProducto=<?php echo $objProducto->getIdProducto(); ?>" class="btn btn-light mt-2"> Editar producto </a>
             <a href= "admin.php "class="btn btn-light mt-2"> Volver al Home </a>
         </div>
     <?php }  ?>
