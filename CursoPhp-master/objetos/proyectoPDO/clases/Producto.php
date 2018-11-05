@@ -22,22 +22,13 @@
 		return $listadoProductos;
 	}
 
- /*   public function agregarProducto()
+    public function eliminarMarca()
     {
-    <td><?php echo $producto['prdNombre'];?></td>
-            <td><?php echo $producto['prdPrecio'];?></td>
-            <td><?php echo $producto['mkNombre'];?></td>
-            <td><?php echo $producto['catNombre'];?></td>
-            <td><?php echo $producto['prdPresentacion'];?></td>
-            <td><?php echo $producto['prdStock'];?></td>
-    }*/
-        function eliminarProducto()
-    {
-
         $link = Conexion::conectar();
-        $sql = "DELETE FROM marcas WHERE idMarca=".$idMarca;
+        $idProducto=$_POST['idProducto'];
+        $sql = "DELETE FROM productos WHERE idProducto=".$idProducto;
         $resultado = $link->query($sql);//ejecuta el delete
-        return $chequeo = $resultado->rowCount();
+        return $resultado;
     }
     public function agregarProducto()
     {
@@ -170,6 +161,14 @@
         $resultado = $link->query($sql);//ejecuta el agregar
         return $resultado;
     }*/
+    public function getNombrePorId($idProducto)
+    {
+        $link = Conexion::conectar();
+        $sql = "SELECT prdNombre FROM productos WHERE idProducto=".$idProducto;
+        $resultado = $link->query($sql);//ejecuta el delete
+        $detalleMarca = $resultado->fetch();
+        return $detalleMarca;
+    }
     
     public function getIdProducto()
     {

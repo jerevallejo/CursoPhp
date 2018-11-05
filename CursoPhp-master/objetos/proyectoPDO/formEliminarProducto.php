@@ -3,20 +3,21 @@
 <?php 
 		require 'clases/Conexion.php';
         require 'clases/Producto.php';
+        $idProducto=$_GET['idProducto'];
         $objProducto = new Producto();
-        //$chequeo = $objProducto->eliminarProducto();
+        $prdNombre = $objProducto->getNombrePorId($idProducto);
 ?>
 
 <main class="container">
     <h1>Confirmación de baja de una marca</h1>
 
     <div class="card bg-light mb-3 col-md-6" >
-        <div class="card-header alert alert-danger">Confirmación de baja de un producto</div>
+        <div class="card-header alert alert-danger">Confirmacion baja del producto:</div>
         <div class="card-body">
             <form action="eliminarProducto.php" method="post">
-                <h5 class="card-title"><?php echo $objProducto-> getPrdNombre ?></h5>
+                <h5 class="card-title"><?php echo $prdNombre['prdNombre'] ?></h5>
                 <input type="submit" class="btn btn-danger" value="confirmar baja">
-                <input type="hidden" name="idProducto" value="<?php echo $objProducto-> getIdProducto?>">
+                <input type="hidden" name="idProducto" value="<?php echo $idProducto; ?>">
                 <a href="adminProductos.php" class="btn btn-light">volver al panel de Productos</a>
             </form>
         </div>
