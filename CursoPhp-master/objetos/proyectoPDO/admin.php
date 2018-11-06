@@ -1,3 +1,6 @@
+<?php
+        require 'config/config.php';
+?>
 <?php  include 'includes/header.html';  ?>
 <?php  include 'includes/nav.php';  ?>
 
