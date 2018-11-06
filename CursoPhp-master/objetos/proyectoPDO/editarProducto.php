@@ -1,15 +1,15 @@
 <?php  include 'includes/header.html';  ?>
 <?php  include 'includes/nav.php';  ?>
 <?php 
-	require 'clases/Conexion.php';
+    require 'clases/Conexion.php';
     require 'clases/Producto.php';
     $objProducto = new Producto();
-	$chequeo = $objProducto -> editarProducto();
+    $chequeo = $objProducto -> editarProducto();
 ?>
 <main class="container">
     <h1>Edicion de un producto</h1>
     <?php 
-    	if($chequeo == 1)
+        if($chequeo == 1)
     {?>
             <div class="alert alert-success" role="alert">
                 Producto: <b><?php echo $objProducto->getPrdNombre(); ?></b> editado con exito 

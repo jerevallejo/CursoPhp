@@ -36,13 +36,15 @@
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function eliminarMarca()
+    public function eliminarProducto($id)
     {
         $link = Conexion::conectar();
-        $idProducto=$_POST['idProducto'];
-        $sql = "DELETE FROM productos WHERE idProducto=".$idProducto;
-        $resultado = $link->query($sql);//ejecuta el delete
-        return $resultado;
+        $sql = "DELETE FROM productos 
+                WHERE idProducto= :idProducto";
+        $stmt = $link->prepare($sql);
+        $stmt->bindParam(':idProducto', $id , PDO::PARAM_INT);
+        $stmt->execute();
+        return $chequeo = $stmt->rowCount();
     }
     public function agregarProducto()
     {
